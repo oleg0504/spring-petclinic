@@ -26,12 +26,7 @@ pipeline {
             }
         }
        
-        post{
-            always{
-                echo "Name of the committer ${env.COMMITTER}"
-                echo "Email of the committer ${env.EMAIL}"
-                }
-            }
+        
         }
     }
 }
