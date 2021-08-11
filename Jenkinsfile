@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    
+    environment {
+        CREDENTIALS_ID ='GCP-PetClinic'
+        BUCKET = 'petclinic-bucket'
+        PATTERN = '/var/lib/jenkins/workspace/test2/target/spring-petclinic-2.4.5.jar'
+    }
    
     tools {
           maven "maven"
@@ -18,7 +24,15 @@ pipeline {
                 }
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-        }
+        }   
+        stage('Store to GCS') {
+            steps{
+                step([$class: 'ClassicUploadStep', credentialsId: env
+                        .CREDENTIALS_ID,  bucket: "gs://${env.BUCKET}",
+                      pattern: env.PATTERN])
+                }
+            }
+        
         stage('Test') {
             steps {
                 junit '**/target/surefire-reports/TEST-*.xml'
@@ -26,5 +40,5 @@ pipeline {
             }
         }
           
-     }
+    }
 }
