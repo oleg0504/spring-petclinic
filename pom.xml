@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.springframework.samples</groupId>
-  <artifactId>spring-petclinic-${BUIL_NUMBER}</artifactId>
+  <artifactId>spring-petclinic-${BUILD_NUMBER}</artifactId>
   <version>2.4.5</version>
 
   <parent>
